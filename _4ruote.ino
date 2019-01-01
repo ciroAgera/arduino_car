@@ -34,13 +34,9 @@ pinMode(8,OUTPUT);
 }
 
 void loop() {
-  
   motor_left.setSpeed(speed_left); // min speed 135   max speed 255
   motor_right.setSpeed(speed_right);// min speed 135   max speed 255  
 
-
-
-       
 //controllo sul seriale
     if (Serial.available() > 0) 
     {
@@ -125,15 +121,17 @@ if (distanza <= 25 ) {
          }
   }
 
-void alt() {
+void alt() 
+{
   motor_left.run(RELEASE); // stopped
   motor_right.run(RELEASE); // stopped
 
   Serial.println("Fermati\n"); 
   Serial.println(distanza);
-  } 
+} 
 
-void luce(){
+void luce()
+{
   delay(500);
   luminosita = analogRead(A0);
   luminosita= map(luminosita, 0, 1023, 0, 255);
@@ -143,12 +141,14 @@ void luce(){
   
   
   
-  if ( lumen <= 20) {
+  if ( lumen <= 20)
+  {
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
     loop();
   }
-    else{
+  else
+  {
     digitalWrite(7,LOW);
     digitalWrite(8,LOW);
   }
