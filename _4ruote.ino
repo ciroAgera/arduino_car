@@ -42,70 +42,68 @@ void loop() {
 
        
 //controllo sul seriale
-    if (Serial.available() > 0) {
-    // read the incoming byte:
-    incomingByte = Serial.read();
+    if (Serial.available() > 0) 
+    {
+      // read the incoming byte:
+      incomingByte = Serial.read();
     }
     else
-    {incomingByte='*';}
+    {incomingByte='*';
+    }
 
   
-  switch(incomingByte)
-  {
-     case 's':
-         // fermati
-     { 
-       alt();
-       incomingByte='*';
-       
-     }
-      
-     break;
-     
-     case 'f':
+    switch(incomingByte)
+    {
+       case 's':
+       // fermati
+       { 
+         alt();
+         incomingByte='*';
+
+       }break;
+
+       case 'f':
        // Vai avanti
-     {  Serial.println("Vai avanti\n");
-        motor_left.run(BACKWARD); 
-        motor_right.run(FORWARD);   
-       
-       Serial.println("Vai avanti\n");
-       incomingByte='*';
-     }break;
-    
-    case 'b': // Vai indietro
-    {   motor_left.run(FORWARD);
-        motor_right.run(BACKWARD);
-        Serial.println("Vai indietro\n");
-       incomingByte='*';
-    } break;
-     
-     case 'r':
-     // gira a destra
-     {  
-       motor_left.run(BACKWARD); 
-       motor_right.run(BACKWARD);
-       Serial.println("Gira a destra\n");
-       incomingByte='*';
-     }
-     break;
+       {  Serial.println("Vai avanti\n");
+          motor_left.run(BACKWARD); 
+          motor_right.run(FORWARD);   
 
-     
+         Serial.println("Vai avanti\n");
+         incomingByte='*';
+       }break;
+
+       case 'b': 
+       // Vai indietro
+       {   motor_left.run(FORWARD);
+           motor_right.run(BACKWARD);
+           Serial.println("Vai indietro\n");
+          incomingByte='*';
+       } break;
+
+       case 'r':
+       // gira a destra
+       {  
+         motor_left.run(BACKWARD); 
+         motor_right.run(BACKWARD);
+         Serial.println("Gira a destra\n");
+         incomingByte='*';
+       } break;
+
        case 'l':
-        // gira a sinistra
-      { 
-       motor_right.run(FORWARD);  
-       motor_left.run(FORWARD);   
-       Serial.println("Gira a sinistra\n");
-       incomingByte='*';
-      }
-     break;
+       // gira a sinistra
+       { 
+         motor_right.run(FORWARD);  
+         motor_left.run(FORWARD);   
+         Serial.println("Gira a sinistra\n");
+         incomingByte='*';
+       } break;
 
-     case '*':{}break;
-  }
+       case '*':{}break;
+    }
+  
   sensore();
   i1=incomingByte;
   luce();
-
 }
 
 void sensore() {
